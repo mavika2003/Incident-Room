@@ -1,0 +1,63 @@
+/*
+ * Theme overrides - applied via <html data-theme="<id>">.
+ *
+ * opsroom is the IncidentRoom product theme: dark SOC console with a
+ * teal signal accent (not the scaffold indigo placeholder).
+ */
+
+/* Opsroom - dark security operations console */
+[data-theme="opsroom"] {
+  color-scheme: dark;
+  --color-background: #0b1118;
+  --color-foreground: #e6edf5;
+  --color-card: #121a24;
+  --color-card-foreground: #e6edf5;
+  --color-popover: #121a24;
+  --color-popover-foreground: #e6edf5;
+  --color-primary: #2dd4bf;
+  --color-primary-foreground: #042f2e;
+  --color-secondary: #182231;
+  --color-secondary-foreground: #e6edf5;
+  --color-muted: #182231;
+  --color-muted-foreground: #8b9bb0;
+  --color-accent: #1c2838;
+  --color-accent-foreground: #e6edf5;
+  --color-destructive: #f87171;
+  --color-destructive-foreground: #450a0a;
+  --color-border: rgba(100, 120, 145, 0.28);
+  --color-input: rgba(100, 120, 145, 0.35);
+  --color-ring: #2dd4bf;
+  --radius: 0.375rem;
+  --shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.28);
+  --shadow-card-hover: 0 2px 10px 0 rgba(0, 0, 0, 0.36);
+  --color-shell: #080d13;
+  --color-shell-panel: #121a24;
+}
+
+/* Paper - light example theme retained for comparison. */
+[data-theme="paper"] {
+  color-scheme: light;
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-card: #fafafa;
+  --color-card-foreground: #0a0a0a;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0a0a0a;
+  --color-primary: #171717;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f5f5f5;
+  --color-secondary-foreground: #0a0a0a;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #525252;
+  --color-accent: #e5e5e5;
+  --color-accent-foreground: #0a0a0a;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e5e5e5;
+  --color-input: #e5e5e5;
+  --color-ring: #171717;
+  --shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.016);
+  --shadow-card-hover: 0 2px 8px 0 rgba(0, 0, 0, 0.032);
+  --color-shell: #fafafa;
+  --color-shell-panel: #ffffff;
+}
