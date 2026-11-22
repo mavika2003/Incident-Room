@@ -145,13 +145,15 @@ export function InvestigationTimeline({ incidentId }: { incidentId: string }) {
               <li
                 key={entry.recordId}
                 data-testid="timeline-entry"
-                className="rounded-md border border-border bg-card/60 px-3 py-3"
+                className="min-w-0 rounded-md border border-border bg-card/60 px-3 py-3"
               >
                 <div className="mb-1.5 flex flex-wrap items-center gap-2">
                   <Badge variant="outline" size="sm">
                     {eventTypeLabel(entry.data.type)}
                   </Badge>
-                  <span className="text-xs font-medium text-foreground">{author}</span>
+                  <span className="min-w-0 break-words text-xs font-medium text-foreground">
+                    {author}
+                  </span>
                   <span
                     className="text-[11px] text-muted-foreground"
                     title={formatIncidentTime(entry.createdAt)}
@@ -159,7 +161,7 @@ export function InvestigationTimeline({ incidentId }: { incidentId: string }) {
                     {formatRelativeTime(entry.createdAt)}
                   </span>
                 </div>
-                <p className="whitespace-pre-wrap text-sm leading-relaxed text-foreground">
+                <p className="whitespace-pre-wrap break-words text-sm leading-relaxed text-foreground">
                   {entry.data.body}
                 </p>
               </li>

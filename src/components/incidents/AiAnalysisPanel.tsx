@@ -27,21 +27,21 @@ function FindingsBody({ findings }: { findings: AiAnalysisFindings }) {
         <h5 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           Summary
         </h5>
-        <p className="mt-1 leading-relaxed text-foreground">{findings.summary}</p>
+        <p className="mt-1 break-words leading-relaxed text-foreground">{findings.summary}</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        <div>
+        <div className="min-w-0">
           <h5 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Threat category
           </h5>
-          <p className="mt-1 text-foreground">{findings.threatCategory}</p>
+          <p className="mt-1 break-words text-foreground">{findings.threatCategory}</p>
         </div>
-        <div>
+        <div className="min-w-0">
           <h5 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Confidence
           </h5>
-          <p className="mt-1 text-foreground">
+          <p className="mt-1 break-words text-foreground">
             {confidenceLabel(findings.confidence.level)} - {findings.confidence.justification}
           </p>
         </div>
@@ -90,10 +90,10 @@ function EvidenceList({
       <ul className="mt-1 space-y-1.5">
         {items.map((item) => (
           <li key={item} className="flex gap-2 leading-relaxed text-foreground">
-            <span className="mt-0.5 font-mono text-xs text-muted-foreground" aria-hidden>
+            <span className="mt-0.5 shrink-0 font-mono text-xs text-muted-foreground" aria-hidden>
               {marker}
             </span>
-            <span>{item}</span>
+            <span className="min-w-0 break-words">{item}</span>
           </li>
         ))}
       </ul>
@@ -104,8 +104,10 @@ function EvidenceList({
 function IndicatorList({ indicators }: { indicators: ExtractedIndicator[] }) {
   if (!indicators.length) {
     return (
-      <p className="text-xs text-muted-foreground">
-        No deterministic indicators matched this incident text.
+      <p className="text-xs leading-relaxed text-muted-foreground">
+        No rule-based indicators matched this text. That only means the built-in extractors did not
+        fire; the AI report above can still triage unsupported patterns from the incident
+        description and notes.
       </p>
     )
   }
@@ -117,9 +119,9 @@ function IndicatorList({ indicators }: { indicators: ExtractedIndicator[] }) {
           key={ind.id}
           className="rounded-md border border-border/70 bg-muted/20 px-3 py-2 text-xs"
         >
-          <p className="font-medium text-foreground">{ind.label}</p>
-          <p className="mt-0.5 text-muted-foreground">{ind.detail}</p>
-          <p className="mt-1 font-mono text-[11px] text-muted-foreground">
+          <p className="break-words font-medium text-foreground">{ind.label}</p>
+          <p className="mt-0.5 break-words text-muted-foreground">{ind.detail}</p>
+          <p className="mt-1 break-all font-mono text-[11px] text-muted-foreground">
             Evidence: {ind.evidence}
           </p>
         </li>
@@ -156,25 +158,25 @@ function AnalysisCard({
 
   return (
     <article
-      className="space-y-4 rounded-lg border border-border bg-card/60 p-4"
+      className="min-w-0 space-y-4 overflow-hidden rounded-lg border border-border bg-card/60 p-4"
       data-testid="ai-analysis-card"
       data-analysis-id={row.recordId}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <div className="space-y-1">
+        <div className="min-w-0 space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant={reviewBadgeVariant(row.data.reviewStatus)}>
               {reviewStatusLabel(row.data.reviewStatus)}
             </Badge>
-            <span className="font-mono text-[11px] text-muted-foreground">
+            <span className="break-all font-mono text-[11px] text-muted-foreground">
               {asText(row.data.modelId) || 'model unknown'}
             </span>
           </div>
-          <p className="text-xs text-muted-foreground">
+          <p className="break-words text-xs text-muted-foreground">
             Generated {formatIncidentTime(row.createdAt)} by {creatorName}
           </p>
           {reviewerName && row.data.reviewedAt && (
-            <p className="text-xs text-muted-foreground">
+            <p className="break-words text-xs text-muted-foreground">
               Reviewer {reviewerName} at {formatIncidentTime(row.data.reviewedAt)}
             </p>
           )}
@@ -298,11 +300,11 @@ export function AiAnalysisPanel({ incidentId }: { incidentId: string }) {
   return (
     <section className="space-y-4" data-testid="ai-analysis-panel">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
+        <div className="min-w-0 flex-1">
           <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             AI analysis
           </h3>
-          <p className="mt-1 text-xs text-muted-foreground">
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
             Evidence-grounded triage via DeepSpace AI (billed to the app owner). Previous reports
             are kept for history.
             {user ? null : ' Sign in required.'}
@@ -310,6 +312,7 @@ export function AiAnalysisPanel({ incidentId }: { incidentId: string }) {
         </div>
         <Button
           size="sm"
+          className="shrink-0"
           loading={analyzing}
           disabled={analyzing || !user}
           onClick={() => void runAnalysis()}
@@ -336,7 +339,7 @@ export function AiAnalysisPanel({ incidentId }: { incidentId: string }) {
 
       {analyzeError && (
         <div
-          className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+          className="break-words rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive"
           data-testid="ai-analysis-error"
           role="alert"
         >

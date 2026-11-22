@@ -78,12 +78,12 @@ export function IncidentList({
                     {incident.data.displayId}
                     {isDemo && (
                       <Badge variant="outline" size="sm" className="font-sans normal-case tracking-normal">
-                        Demo
+                        Synthetic
                       </Badge>
                     )}
                   </span>
                 </td>
-                <td className="max-w-[240px] truncate px-4 py-3 font-medium text-foreground">
+                <td className="max-w-[12rem] truncate px-4 py-3 font-medium text-foreground sm:max-w-[240px]">
                   {incident.data.title}
                 </td>
                 <td className="px-4 py-3">

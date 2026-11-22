@@ -126,11 +126,11 @@ export function IncidentDetail({
             <span className="font-mono text-xs text-muted-foreground">
               {incident.data.displayId}
             </span>
-            {isDemo && <Badge variant="outline">Demo data</Badge>}
+            {isDemo && <Badge variant="outline">Synthetic</Badge>}
             <SeverityBadge severity={incident.data.severity} />
             <StatusBadge status={incident.data.status} />
           </div>
-          <h2 className="text-lg font-semibold leading-snug text-foreground">
+          <h2 className="break-words text-lg font-semibold leading-snug text-foreground">
             {incident.data.title}
           </h2>
         </div>
@@ -152,7 +152,7 @@ export function IncidentDetail({
           <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Description
           </h3>
-          <p className="whitespace-pre-wrap text-sm leading-relaxed text-foreground">
+          <p className="whitespace-pre-wrap break-words text-sm leading-relaxed text-foreground">
             {asText(current.data.description).trim() || 'No description provided.'}
           </p>
         </section>
@@ -285,9 +285,9 @@ export function IncidentDetail({
         </dl>
 
         {isDemo && (
-          <p className="rounded-md border border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
-            This row was seeded as synthetic demo data (`source: synthetic`).
-            Live investigations use `source: live` and a non-DEMO display ID.
+          <p className="rounded-md border border-border bg-muted/40 px-3 py-2 text-xs leading-relaxed text-muted-foreground">
+            Synthetic demo seed for walkthroughs only. Live investigations use a non-DEMO display
+            ID and are marked as live in the Source field.
           </p>
         )}
 
